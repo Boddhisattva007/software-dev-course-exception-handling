@@ -20,6 +20,12 @@ Run the program and observe the exceptions that occur. Document what the excepti
 Write Exception Handling Code:
 Use try/catch blocks to handle the errors so the program doesn’t crash when incorrect input or unexpected situations occur.
 
+Error: Animal not found in records!
+    at getAdoptionFee
+
+Error: Invalid animal name or adoption fee!
+    at addAnimal 
+
 Test and Debug:
 Test the program with valid and invalid inputs to confirm that exceptions are handled gracefully
 and the program continues running as intended.
@@ -55,13 +61,27 @@ while (true) {
         break;
     }
     if (action === "add") {
-        let animal = readlineSync.question("Enter the animal's name: ");
-        let fee = Number(readlineSync.question("Enter the adoption fee: "));
-        addAnimal(animal, fee);
-        console.log(`${animal} added with a fee of $${fee}.`);
+        try {
+             let animal = readlineSync.question("Enter the animal's name: ");
+             let fee = Number(readlineSync.question("Enter the adoption fee: "));
+             addAnimal(animal, fee);
+             console.log(`${animal} added with a fee of $${fee}.`);
+        } catch (addError) {
+             console.log(`Error Details: ${addError.message}`);
+        } finally {
+
+        }
+   
     } else if (action === "fee") {
-        let animal = readlineSync.question("Enter the animal's name to find its adoption fee: ");
-        console.log(`${animal}'s adoption fee is $${getAdoptionFee(animal)}.`);
+        try {
+            let animal = readlineSync.question("Enter the animal's name to find its adoption fee: ");
+            console.log(`${animal}'s adoption fee is $${getAdoptionFee(animal)}.`);
+        } catch (feeError) {
+            console.log(`Error Details: ${feeError.message}`);
+        } finally {
+
+        }
+
     } else {
         console.log("Invalid action. Please choose 'add', 'fee', or 'exit'.");
     }
