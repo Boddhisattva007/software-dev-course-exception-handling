@@ -69,7 +69,7 @@ while (true) {
         } catch (addError) {
              console.log(`Error Details: ${addError.message}`);
         } finally {
-
+            console.log("Add animal attempt completed.");
         }
    
     } else if (action === "fee") {
@@ -79,7 +79,7 @@ while (true) {
         } catch (feeError) {
             console.log(`Error Details: ${feeError.message}`);
         } finally {
-
+            console.log("Fee retrieval attempt completed.");
         }
 
     } else {
